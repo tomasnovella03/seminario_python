@@ -1,20 +1,25 @@
 import random
-words = [
-    "python",
-    "programa",
-    "variable",
-    "funcion",
-    "bucle",
-    "cadena",
-    "entero",
-    "lista",
-    ]
-word = random.choice(words)
+categorias = {
+    "programacion" : ["python", "programa", "variable", "funcion", "bucle", "cadena", "entero", "lista"],
+    "paises" : ["Argentina", "Brasil", "Peru", "Chile", "Colombia", "Ecuador", "Venezuela"],
+    "animales" : ["perro", "gato", "elefante", "jirafa", "tigre", "leon", "mono"],
+    "frutas" : ["manzana", "banana", "naranja", "pera", "uva", "sandia", "melon"]
+}
+print("Bienvenido al Ahorcado!")
+print()
+print("Las categorias son: ")
+for categoria in categorias:
+    print(">", categoria)
+
+categoria = input("Ingrese una categoria: ").lower()
+while categoria not in categorias:
+    print("categoria incorrecta.")
+    categoria = input("Ingrese una categoria: ").lower()
+
+word = random.choice(categorias[categoria]).lower()
 guessed = []
 attempts = 6
 puntaje = 0
-
-print("¡Bienvenido al Ahorcado!")
 print()
 
 while attempts > 0:
@@ -29,7 +34,7 @@ while attempts > 0:
 
     if "_" not in progress: # Verificar si el jugador ya adivinó la palabra completa
         puntaje += 6
-        print(f"¡Ganaste! Hiciste un puntaje de: {puntaje}")
+        print(f"¡Ganaste! Tu puntaje fue: {puntaje}")
         break
 
     print(f"Intentos restantes: {attempts}")
@@ -53,4 +58,4 @@ while attempts > 0:
     print()
 else:
     puntaje = 0
-    print(f"¡Perdiste! La palabra era: {word} tu puntaje fue: {puntaje}")
+    print(f"¡Perdiste! La palabra era: {word}. Tu puntaje fue: {puntaje}")
